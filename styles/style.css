@@ -67,3 +67,28 @@ body {
   transform: scale(1.1);
   filter: brightness(1.2);
 }
+.btn-connect {
+  background: linear-gradient(to right, #ff9800, #ff5722);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-connect:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.btn-connect {
+  background: linear-gradient(to right, #ff9800, #ff5722);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-connect:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
