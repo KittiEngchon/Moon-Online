@@ -8,6 +8,11 @@ async function connectWallet() {
   try {
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
     document.getElementById("wallet-status").textContent = `🔗 เชื่อมต่อแล้ว: ${accounts[0]}`;
+    
+    // ตรวจสอบเครือข่ายและยอดคงเหลือ
+    await checkNetwork();
+    await getBalance(accounts[0]);
+    
     return accounts[0];
   } catch (error) {
     console.error("การเชื่อมต่อผิดพลาด:", error);
@@ -17,9 +22,21 @@ async function connectWallet() {
 // ตรวจสอบเครือข่ายที่ใช้งาน
 async function checkNetwork() {
   const chainId = await ethereum.request({ method: "eth_chainId" });
-
+  
   if (chainId !== "0x1") { // ตรวจสอบว่าผู้ใช้ต้องอยู่บน Ethereum Mainnet
     alert("⚠ กรุณาสลับไปยัง Ethereum Mainnet!");
+  }
+}
+
+// ดึงยอดคงเหลือ ETH
+async function getBalance(address) {
+  try {
+    const web3 = new Web3(window.ethereum);
+    const balance = await web3.eth.getBalance(address);
+    const ethBalance = web3.utils.fromWei(balance, "ether");
+    document.getElementById("wallet-balance").textContent = `💰 ยอดคงเหลือ: ${ethBalance} ETH`;
+  } catch (error) {
+    console.error("❌ ผิดพลาดในการดึงยอดคงเหลือ:", error);
   }
 }
 
