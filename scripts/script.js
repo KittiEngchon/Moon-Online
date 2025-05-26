@@ -21,17 +21,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ตีบวก NFT
+  // ตีบวกระดับสูง (ตามแบบ MU Online)
   document.getElementById("upgrade-btn").addEventListener("click", () => {
-    const success = Math.random() < 0.6; // โอกาสสำเร็จ 60%
+    const successRate = [90, 80, 70, 60, 50, 40, 30, 20, 10, 5]; // อัตราสำเร็จแต่ละระดับ
+    const destroyRate = [0, 0, 5, 10, 15, 20, 25, 30, 35, 40]; // โอกาสไอเท็มถูกทำลาย
+
+    const chance = successRate[level] || 5; // ถ้าระดับสูงกว่า 10, โอกาสเหลือ 5%
+    const destroyChance = destroyRate[level] || 50; // ถ้าระดับสูงกว่า 10, โอกาสทำลาย 50%
+
+    const success = Math.random() * 100 < chance;
     const status = document.getElementById("upgrade-status");
+
     if (success) {
       level += 1;
-      status.textContent = `ตีบวกสำเร็จ! เลเวลตอนนี้: +${level}`;
+      status.textContent = `🎉 ตีบวกสำเร็จ! ตอนนี้เป็นระดับ +${level}`;
       status.classList.remove("text-red-400");
       status.classList.add("text-green-400");
     } else {
-      status.textContent = "ตีบวกล้มเหลว!";
+      const destroyItem = Math.random() * 100 < destroyChance; // เช็คว่าไอเท็มจะถูกทำลายหรือไม่
+      if (destroyItem) {
+        level = 0; // รีเซ็ตไอเท็ม
+        status.textContent = "💥 ตีบวกล้มเหลว และไอเท็มถูกทำลาย!";
+      } else {
+        status.textContent = "❌ ตีบวกล้มเหลว!";
+      }
       status.classList.remove("text-green-400");
       status.classList.add("text-red-400");
     }
