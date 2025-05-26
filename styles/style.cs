@@ -1,33 +1,69 @@
-/* ตั้งค่าพื้นหลังและฟอนต์ */
+/* 🎨 ตั้งค่าพื้นหลังและฟอนต์ */
 body {
   background: linear-gradient(to right, #1a1a2e, #16213e);
   font-family: 'Kanit', sans-serif;
   color: white;
 }
 
-/* ปรับแต่งกล่องตัวละคร */
+/* 🎭 ปรับแต่งกล่องตัวละคร & ปีก */
 .char-btn, .wing-btn {
+  background: #292929;
+  padding: 12px;
+  border-radius: 10px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  border: 2px solid #444;
 }
 
 .char-btn:hover, .wing-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
 }
 
-/* ปุ่มหลักของระบบ */
+/* ⚡ ปุ่มหลักของระบบ */
 #upgrade-btn, #fuse-btn {
+  background: linear-gradient(to right, #ff4500, #8a2be2);
+  padding: 12px;
+  border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(138, 43, 226, 0.5);
+  font-size: 18px;
+  transition: filter 0.2s ease-in-out;
 }
 
 #upgrade-btn:hover, #fuse-btn:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.3);
 }
 
-/* แสดงผล NFT หลังจากรวม */
+/* 🏆 เอฟเฟกต์เรืองแสงสำหรับ NFT ที่ผ่านการตีบวกระดับสูง */
+.nft-preview {
+  box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
+  animation: glowEffect 2s infinite alternate;
+}
+
+@keyframes glowEffect {
+  0% { box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5); }
+  100% { box-shadow: 0px 0px 25px rgba(255, 215, 0, 1); }
+}
+
+/* 📦 แสดงผล NFT หลังจากรวม */
 #result {
   background: rgba(255, 255, 255, 0.1);
   padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 🎯 เอฟเฟกต์พิเศษให้ปุ่มรวม NFT */
+.btn-fuse {
+  font-size: 20px;
+  padding: 14px;
+  background: linear-gradient(to right, #8a2be2, #ff4500);
   border-radius: 10px;
-  backdrop-filter: blur(10px);
+  color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-fuse:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
