@@ -9,10 +9,10 @@ async function connectWallet() {
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
     document.getElementById("wallet-status").textContent = `🔗 เชื่อมต่อแล้ว: ${accounts[0]}`;
     
-    // ตรวจสอบเครือข่ายและยอดคงเหลือ
     await checkNetwork();
     await getBalance(accounts[0]);
-    
+    await getTokenBalance(accounts[0]);
+
     return accounts[0];
   } catch (error) {
     console.error("การเชื่อมต่อผิดพลาด:", error);
@@ -22,7 +22,7 @@ async function connectWallet() {
 // ตรวจสอบเครือข่ายที่ใช้งาน
 async function checkNetwork() {
   const chainId = await ethereum.request({ method: "eth_chainId" });
-  
+
   if (chainId !== "0x1") { // ตรวจสอบว่าผู้ใช้ต้องอยู่บน Ethereum Mainnet
     alert("⚠ กรุณาสลับไปยัง Ethereum Mainnet!");
   }
@@ -37,6 +37,22 @@ async function getBalance(address) {
     document.getElementById("wallet-balance").textContent = `💰 ยอดคงเหลือ: ${ethBalance} ETH`;
   } catch (error) {
     console.error("❌ ผิดพลาดในการดึงยอดคงเหลือ:", error);
+  }
+}
+
+// ดึงยอดคงเหลือ Token (USDT หรือ MATIC)
+async function getTokenBalance(address) {
+  try {
+    const tokenAddress = "0xYourTokenAddress"; // ใส่ที่อยู่ของ Token
+    const tokenABI = [ /* ใส่ ABI ของ Token ที่นี่ */ ];
+    const tokenContract = new web3.eth.Contract(tokenABI, tokenAddress);
+    
+    const balance = await tokenContract.methods.balanceOf(address).call();
+    const formattedBalance = web3.utils.fromWei(balance, "ether");
+
+    document.getElementById("token-balance").textContent = `🪙 Token คงเหลือ: ${formattedBalance}`;
+  } catch (error) {
+    console.error("❌ ผิดพลาดในการดึงยอด Token:", error);
   }
 }
 
