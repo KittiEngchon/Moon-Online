@@ -4,47 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moon Online - NFT Fusion Lab</title>
+  <link rel="stylesheet" href="styles/style.css">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-random123'; style-src 'self' https://cdn.jsdelivr.net; object-src 'none';">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; style-src 'self' https://cdn.jsdelivr.net;">
 </head>
 <body class="bg-gray-900 text-white font-sans">
   <div class="max-w-4xl mx-auto p-6">
     <h1 class="text-4xl font-bold text-center text-purple-400 mb-8">🌕 Moon Online - NFT Fusion Lab</h1>
 
+    <!-- เชื่อมต่อกระเป๋าเงิน -->
+    <div class="text-center mb-6">
+      <button id="connect-btn" class="btn-connect">เชื่อมต่อกระเป๋าเงิน</button>
+      <p id="wallet-status" class="text-sm text-gray-400 mt-2"></p>
+    </div>
+
     <!-- เลือกตัวละคร -->
     <div class="mb-6">
-      <h2 class="text-2xl font-semibold mb-2">เลือกตัวละครเริ่มต้น</h2>
-      <div id="character-options" class="flex space-x-4">
+      <h2 class="text-2xl font-semibold mb-2">เลือกตัวละคร</h2>
+      <div id="character-options">
         <button data-char="ดากไนท์" class="char-btn">ดากไนท์</button>
         <button data-char="ดากวิสซาท" class="char-btn">ดากวิสซาท</button>
         <button data-char="ดากเอล" class="char-btn">ดากเอล</button>
       </div>
     </div>
 
+    <!-- เลือกปีก -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">เลือกปีก</h2>
+      <div id="wing-options">
+        <button data-wing="ปีกเดวิล" class="wing-btn">ปีกเดวิล</button>
+        <button data-wing="ปีกชาออส" class="wing-btn">ปีกชาออส</button>
+        <button data-wing="ปีกเซ็น" class="wing-btn">ปีกเซ็น</button>
+        <button data-wing="ปีกค้างคาว" class="wing-btn">ปีกค้างคาว</button>
+      </div>
+    </div>
+
     <!-- ตั้งชื่อ NFT -->
     <div class="mb-6">
       <h2 class="text-2xl font-semibold mb-2">ตั้งชื่อ NFT ของคุณ</h2>
-      <input id="nft-name-input" type="text" placeholder="เช่น ShadowKnight_X" class="w-full p-3 rounded-md bg-gray-800 border border-gray-600 text-white" />
+      <input id="nft-name-input" type="text" placeholder="เช่น ShadowKnight_X" class="input-box" />
     </div>
 
     <!-- ตีบวก NFT -->
     <div class="mb-6">
       <h2 class="text-2xl font-semibold mb-2">ตีบวก (Upgrade)</h2>
-      <p class="mb-2 text-sm text-gray-400">ใช้ Token เพื่อเพิ่มเลเวล + ความสามารถ มีโอกาสสำเร็จ/ล้มเหลว</p>
+      <p class="mb-2 text-sm text-gray-400">ใช้ Token เพื่อเพิ่มเลเวล มีโอกาสสำเร็จ/ล้มเหลว</p>
       <button id="upgrade-btn" class="btn-upgrade">🎯 กดตีบวก</button>
-      <p id="upgrade-status" class="mt-2 text-sm text-green-400"></p>
+      <p id="upgrade-status" class="text-sm text-green-400"></p>
+    </div>
+
+    <!-- รวม NFT -->
+    <div class="text-center my-8">
+      <button id="fuse-btn" class="btn-fuse">🚀 รวม NFT และมิ้น</button>
     </div>
 
     <!-- แสดงผลลัพธ์ -->
-    <div id="result" class="hidden mt-10 text-center border-t border-gray-700 pt-6">
+    <div id="result" class="hidden mt-10 text-center">
       <h2 class="text-3xl font-bold text-green-400 mb-4">✅ NFT ที่ได้จากการฟิวชัน</h2>
       <div class="text-xl">ชื่อ: <strong id="result-name"></strong></div>
-      <img src="./assets/images/nft.png" alt="NFT Image" class="mx-auto mt-4 rounded-xl shadow-lg" />
+      <div class="text-lg text-gray-300">คลาส: <span id="result-class"></span> + <span id="result-wing"></span></div>
+      <img src="assets/images/nft.png" alt="NFT Image" class="nft-preview">
     </div>
   </div>
 
-  <!-- เชื่อมต่อไฟล์ JavaScript -->
-  <script src="scripts/script.js" nonce="random123"></script>
+  <script src="scripts/script.js"></script>
+  <script src="scripts/web3.js"></script>
 </body>
 </html>
-
