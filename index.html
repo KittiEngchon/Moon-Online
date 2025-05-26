@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moon Online - NFT Fusion Lab</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; style-src 'self' https://cdn.jsdelivr.net; object-src 'none';">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-random123'; style-src 'self' https://cdn.jsdelivr.net; object-src 'none';">
 </head>
 <body class="bg-gray-900 text-white font-sans">
   <div class="max-w-4xl mx-auto p-6">
@@ -15,22 +15,9 @@
     <div class="mb-6">
       <h2 class="text-2xl font-semibold mb-2">เลือกตัวละครเริ่มต้น</h2>
       <div id="character-options" class="flex space-x-4">
-        <button data-char="ดากไนท์" class="char-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ดากไนท์</button>
-        <button data-char="ดากวิสซาท" class="char-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ดากวิสซาท</button>
-        <button data-char="ดากเอล" class="char-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ดากเอล</button>
-      </div>
-    </div>
-
-    <!-- เลือกปีก -->
-    <div class="mb-6">
-      <h2 class="text-2xl font-semibold mb-2">เลือกปีก</h2>
-      <div id="wing-options" class="grid grid-cols-3 gap-4">
-        <button data-wing="ปีกเดวิล" class="wing-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-pink-500">ปีกเดวิล</button>
-        <button data-wing="ปีกชาออส" class="wing-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-red-500">ปีกชาออส</button>
-        <button data-wing="ปีกเซ็น" class="wing-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-blue-500">ปีกเซ็น</button>
-        <button data-wing="ปีกเบส" class="wing-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-green-500">ปีกเบส</button>
-        <button data-wing="ปีกเทพ" class="wing-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-yellow-500">ปีกเทพ</button>
-        <button data-wing="ปีกค้างคาว" class="wing-btn bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ปีกค้างคาว</button>
+        <button data-char="ดากไนท์" class="char-btn">ดากไนท์</button>
+        <button data-char="ดากวิสซาท" class="char-btn">ดากวิสซาท</button>
+        <button data-char="ดากเอล" class="char-btn">ดากเอล</button>
       </div>
     </div>
 
@@ -44,74 +31,20 @@
     <div class="mb-6">
       <h2 class="text-2xl font-semibold mb-2">ตีบวก (Upgrade)</h2>
       <p class="mb-2 text-sm text-gray-400">ใช้ Token เพื่อเพิ่มเลเวล + ความสามารถ มีโอกาสสำเร็จ/ล้มเหลว</p>
-      <button id="upgrade-btn" class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-lg text-white font-bold hover:scale-105 transform transition">🎯 กดตีบวก</button>
+      <button id="upgrade-btn" class="btn-upgrade">🎯 กดตีบวก</button>
       <p id="upgrade-status" class="mt-2 text-sm text-green-400"></p>
-    </div>
-
-    <!-- ปุ่มรวม NFT -->
-    <div class="text-center my-8">
-      <button id="fuse-btn" class="bg-purple-700 px-10 py-4 rounded-xl font-bold text-xl hover:bg-purple-800 transition">🚀 รวม NFT และมิ้น</button>
     </div>
 
     <!-- แสดงผลลัพธ์ -->
     <div id="result" class="hidden mt-10 text-center border-t border-gray-700 pt-6">
       <h2 class="text-3xl font-bold text-green-400 mb-4">✅ NFT ที่ได้จากการฟิวชัน</h2>
       <div class="text-xl">ชื่อ: <strong id="result-name"></strong></div>
-      <div class="text-lg text-gray-300">คลาส: <span id="result-class"></span> + <span id="result-wing"></span></div>
-      <div class="text-lg text-gray-300">เลเวล: <span id="result-level"></span></div>
-      <img src="https://via.placeholder.com/200x200" alt="NFT Image" class="mx-auto mt-4 rounded-xl shadow-lg" />
+      <img src="./assets/images/nft.png" alt="NFT Image" class="mx-auto mt-4 rounded-xl shadow-lg" />
     </div>
   </div>
 
-  <script>
-    let selectedChar = "";
-    let selectedWing = "";
-    let level = 0;
-
-    // เลือกตัวละคร
-    document.querySelectorAll(".char-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        selectedChar = btn.dataset.char;
-        document.querySelectorAll(".char-btn").forEach(b => b.classList.remove("border-purple-500"));
-        btn.classList.add("border-purple-500");
-      });
-    });
-
-    // เลือกปีก
-    document.querySelectorAll(".wing-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        selectedWing = btn.dataset.wing;
-        document.querySelectorAll(".wing-btn").forEach(b => b.classList.remove("border-purple-500"));
-        btn.classList.add("border-purple-500");
-      });
-    });
-
-    // ตีบวก
-    document.getElementById("upgrade-btn").addEventListener("click", () => {
-      const success = Math.random() < 0.6; // โอกาสสำเร็จ 60%
-      const status = document.getElementById("upgrade-status");
-      if (success) {
-        level += 1;
-        status.textContent = `ตีบวกสำเร็จ! เลเวลตอนนี้: +${level}`;
-        status.classList.remove("text-red-400");
-        status.classList.add("text-green-400");
-      } else {
-        status.textContent = "ตีบวกล้มเหลว!";
-        status.classList.remove("text-green-400");
-        status.classList.add("text-red-400");
-      }
-    });
-
-    // ฟิวชัน NFT
-    document.getElementById("fuse-btn").addEventListener("click", () => {
-      const name = document.getElementById("nft-name-input").value || "NFT-ไม่มีชื่อ";
-      document.getElementById("result-name").textContent = name;
-      document.getElementById("result-class").textContent = selectedChar || "ยังไม่เลือกตัวละคร";
-      document.getElementById("result-wing").textContent = selectedWing || "ยังไม่เลือกปีก";
-      document.getElementById("result-level").textContent = `+${level}`;
-      document.getElementById("result").classList.remove("hidden");
-    });
-  </script>
+  <!-- เชื่อมต่อไฟล์ JavaScript -->
+  <script src="scripts/script.js" nonce="random123"></script>
 </body>
 </html>
 
