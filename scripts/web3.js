@@ -27,6 +27,7 @@ async function checkNetwork() {
 const contractAddress = "0xYourContractAddress"; // ใส่ที่อยู่ Smart Contract
 const contractABI = [ /* ใส่ ABI ของ Smart Contract ที่นี่ */ ];
 const web3 = new Web3(window.ethereum);
+const Web3 = require('web3');
 const nftContract = new web3.eth.Contract(contractABI, contractAddress);
 
 // มิ้น NFT ผ่าน Smart Contract
