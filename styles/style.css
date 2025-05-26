@@ -20,17 +20,30 @@ body {
 }
 
 /* ⚡ ปุ่มหลักของระบบ */
-#upgrade-btn, #fuse-btn {
-  background: linear-gradient(to right, #ff4500, #8a2be2);
+.btn-upgrade, .btn-fuse, .btn-connect {
   padding: 12px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(138, 43, 226, 0.5);
   font-size: 18px;
-  transition: filter 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
-#upgrade-btn:hover, #fuse-btn:hover {
-  filter: brightness(1.3);
+.btn-upgrade {
+  background: linear-gradient(to right, #ff4500, #8a2be2);
+  box-shadow: 0px 4px 10px rgba(138, 43, 226, 0.5);
+}
+
+.btn-fuse {
+  background: linear-gradient(to right, #8a2be2, #ff4500);
+}
+
+.btn-connect {
+  background: linear-gradient(to right, #ff9800, #ff5722);
+  font-size: 16px;
+}
+
+.btn-upgrade:hover, .btn-fuse:hover, .btn-connect:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
 /* 🏆 เอฟเฟกต์เรืองแสงสำหรับ NFT ที่ผ่านการตีบวกระดับสูง */
@@ -52,65 +65,5 @@ body {
   backdrop-filter: blur(15px);
   transition: opacity 0.3s ease-in-out;
 }
-
-/* 🎯 เอฟเฟกต์พิเศษให้ปุ่มรวม NFT */
-.btn-fuse {
-  font-size: 20px;
-  padding: 14px;
-  background: linear-gradient(to right, #8a2be2, #ff4500);
-  border-radius: 10px;
-  color: white;
-  transition: transform 0.2s ease-in-out;
-}
-
-.btn-fuse:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-.btn-connect {
-  background: linear-gradient(to right, #ff9800, #ff5722);
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 16px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.btn-connect:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
-
-.btn-connect {
-  background: linear-gradient(to right, #ff9800, #ff5722);
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 16px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.btn-connect:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}.btn-upgrade {
-  background: linear-gradient(to right, #ff4500, #8a2be2);
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(138, 43, 226, 0.5);
-  font-size: 18px;
-  transition: filter 0.2s ease-in-out;
-}
-
-.btn-upgrade:hover {
-  filter: brightness(1.3);
-}
-
-.nft-preview {
-  box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
-  animation: glowEffect 2s infinite alternate;
-}
-
-@keyframes glowEffect {
-  0% { box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5); }
-  100% { box-shadow: 0px 0px 25px rgba(255, 215, 0, 1); }
 }
 
