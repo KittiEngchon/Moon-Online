@@ -1,7 +1,7 @@
-// เชื่อมต่อกับ Metamask
+// ตรวจสอบว่า Metamask ถูกติดตั้ง
 async function connectWallet() {
   if (!window.ethereum) {
-    alert("กรุณาติดตั้ง Metamask!");
+    alert("⚠ กรุณาติดตั้ง Metamask!");
     return;
   }
 
@@ -10,30 +10,29 @@ async function connectWallet() {
     document.getElementById("wallet-status").textContent = `🔗 เชื่อมต่อแล้ว: ${accounts[0]}`;
     return accounts[0];
   } catch (error) {
-    console.error("การเชื่อมต่อกระเป๋าเงินผิดพลาด:", error);
+    console.error("การเชื่อมต่อผิดพลาด:", error);
   }
 }
 
 // ตรวจสอบเครือข่ายที่ใช้งาน
 async function checkNetwork() {
   const chainId = await ethereum.request({ method: "eth_chainId" });
-  
-  if (chainId !== "0x1") { // ตรวจสอบว่าอยู่บน Ethereum Mainnet
+
+  if (chainId !== "0x1") { // ตรวจสอบว่าผู้ใช้ต้องอยู่บน Ethereum Mainnet
     alert("⚠ กรุณาสลับไปยัง Ethereum Mainnet!");
   }
 }
 
-// เชื่อมต่อกับ Smart Contract
-const contractAddress = "0xYourContractAddress"; // ใส่ที่อยู่ Smart Contract
+// ตั้งค่าการเชื่อมต่อกับ Smart Contract
+const contractAddress = "0xYourContractAddress"; // ใส่ที่อยู่ของ Smart Contract
 const contractABI = [ /* ใส่ ABI ของ Smart Contract ที่นี่ */ ];
 const web3 = new Web3(window.ethereum);
-const Web3 = require('web3');
 const nftContract = new web3.eth.Contract(contractABI, contractAddress);
 
 // มิ้น NFT ผ่าน Smart Contract
 async function mintNFT() {
   try {
-    const accounts = await web3.eth.getAccounts();
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
     await nftContract.methods.mint().send({ from: accounts[0] });
     alert("🎉 มิ้น NFT สำเร็จ!");
   } catch (error) {
