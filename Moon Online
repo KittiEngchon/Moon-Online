@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moon Online - NFT Fusion Lab</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-bold text-center text-purple-400 mb-8">🌕 Moon Online - NFT Fusion Lab</h1>
+
+    <!-- เลือกตัวละคร -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">เลือกตัวละครเริ่มต้น</h2>
+      <div class="flex space-x-4">
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ดากไนท์</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ดากวิสซาท</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ดากเอล</button>
+      </div>
+    </div>
+
+    <!-- เลือกปีก -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">เลือกปีก</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-pink-500">ปีกเดวิล</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-red-500">ปีกชาออส</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-blue-500">ปีกเซ็น</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-green-500">ปีกเบส</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-yellow-500">ปีกเทพ</button>
+        <button class="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-purple-500">ปีกค้างคาว</button>
+      </div>
+    </div>
+
+    <!-- ตั้งชื่อ NFT -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">ตั้งชื่อ NFT ของคุณ</h2>
+      <input type="text" placeholder="เช่น ShadowKnight_X" class="w-full p-3 rounded-md bg-gray-800 border border-gray-600 text-white" />
+    </div>
+
+    <!-- ตีบวก NFT -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">ตีบวก (Upgrade)</h2>
+      <p class="mb-2 text-sm text-gray-400">ใช้ Token เพื่อเพิ่มเลเวล + ความสามารถ มีโอกาสสำเร็จ/ล้มเหลว</p>
+      <button class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-lg text-white font-bold hover:scale-105 transform transition">🎯 กดตีบวก</button>
+    </div>
+
+    <!-- ปุ่มรวม NFT -->
+    <div class="text-center my-8">
+      <button class="bg-purple-700 px-10 py-4 rounded-xl font-bold text-xl hover:bg-purple-800 transition">🚀 รวม NFT และมิ้น</button>
+    </div>
+
+    <!-- แสดงผลลัพธ์ -->
+    <div class="mt-10 text-center border-t border-gray-700 pt-6">
+      <h2 class="text-3xl font-bold text-green-400 mb-4">✅ NFT ที่ได้จากการฟิวชัน</h2>
+      <div class="text-xl">ชื่อ: <strong>ShadowKnight_X</strong></div>
+      <div class="text-lg text-gray-300">คลาส: ดากไนท์ + ปีกเดวิล</div>
+      <div class="text-lg text-gray-300">เลเวล: +1</div>
+      <img src="https://via.placeholder.com/200x200" alt="NFT Image" class="mx-auto mt-4 rounded-xl shadow-lg" />
+    </div>
+  </div>
+</body>
+</html>
