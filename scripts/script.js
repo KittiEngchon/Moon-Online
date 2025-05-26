@@ -59,4 +59,39 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("result-level").textContent = `+${level}`;
     document.getElementById("result").classList.remove("hidden");
   });
+});document.addEventListener("DOMContentLoaded", () => {
+  let level = 0;
+
+  // ตีบวกระดับสูง
+  document.getElementById("upgrade-btn").addEventListener("click", () => {
+    const successRate = [90, 80, 70, 60, 50, 40, 30, 20, 10, 5];
+    const chance = successRate[level] || 5;
+    const success = Math.random() * 100 < chance;
+    const status = document.getElementById("upgrade-status");
+
+    if (success) {
+      level += 1;
+      status.textContent = `🎉 สำเร็จ! ตอนนี้ระดับ +${level}`;
+      document.getElementById("result-level").textContent = `+${level}`;
+      document.getElementById("result").classList.remove("hidden");
+    } else {
+      status.textContent = "❌ ล้มเหลว!";
+    }
+  });
+
+  // เชื่อมต่อ Metamask
+  document.getElementById("connect-btn").addEventListener("click", async () => {
+    if (!window.ethereum) {
+      alert("กรุณาติดตั้ง Metamask!");
+      return;
+    }
+
+    try {
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      document.getElementById("wallet-status").textContent = `🔗 เชื่อมต่อแล้ว: ${accounts[0]}`;
+    } catch (error) {
+      console.error("เชื่อมต่อผิดพลาด:", error);
+    }
+  });
 });
+
